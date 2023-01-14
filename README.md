@@ -220,7 +220,7 @@ Add the connection string to access the database in it, just as below:
 
 DB = 'mongodb+srv://<username>:<password>@<network-address>/<dbname>?retryWrites=true&w=majority'
 
-Ensure to update <username>, <password>, <network-address> and <database> according to your setup 
+DB = "mongodb+srv://Michael1/:Michael1/@cluster0.rvuyi4d.mongodb.net/TinaDB?retryWrites=true&w=majority"
 
 ![select connecting your application](./images/connect-application.png)
 
@@ -261,18 +261,159 @@ node index.js
 
 You shall see a message ‘Database connected successfully’, if so – we have our backend configured. Now we are going to test it.
 
-![database connected successfully](./images/database-connected.png)
+![database connected successfully](./images/database-connected-successfully.png)
 
 # Testing Backend Code without Frontend using RESTful API
 
 we will use Postman to test our API
 
-how perform CRUD operartions on Postman  [title](https://www.example.com)
+how to perform CRUD operartions on Postman [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
 
-![alt text](image.jpg)
-![alt text](image.jpg)
-![alt text](image.jpg)
-![alt text](image.jpg)
+
+You should test all the API endpoints and make sure they are working. For the endpoints that require body, you should send JSON back with the necessary fields since it’s what we setup in our code.
+
+Now open your Postman, create a POST request to the API http://<PublicIP-or-PublicDNS>:5000/api/todos. This request sends a new task to our To-Do list so the application could store it in the database.
+
+ensure you set header key Content-Type as application/json
+
+![setting header](./images/setting-header-on-postman.png)
+
+Having done with the header then next to the Body
+
+![setting Body](./images/setting-body-on-postman.png)
+
+![post request](./images/post-request.png)
+
+Create a GET request to your API on http://<PublicIP-or-PublicDNS>:5000/api/todos. This request retrieves all existing records from out To-do application (backend requests these records from the database and sends it us back as a response to GET request).
+
+![Get request](./images/get-request.png)
+# Frontend creation
+
+Since we are done with the functionality we want from our backend and API, it is time to create a user interface for a Web client (browser) to interact with the application via API. To start out with the frontend of the To-do app, we will use the create-react-app command to scaffold our app.
+
+In the same root directory as your backend code, which is the Todo directory, run:
+
+ npx create-react-app client
+This will create a new folder in your Todo directory called client
+
+![creating react app client](./images/react-app-client.png)
+
+This will create a new folder in your Todo directory called client, where you will add all the react code.
+
+Running a React App
+Before testing the react app, there are some dependencies that need to be installed
+
+Install concurrently. It is used to run more than one command simultaneously from the same terminal window.
+
+npm install concurrently --save-dev
+
+Install nodemon. It is used to run and monitor the server. If there is any change in the server code, nodemon will restart it automatically and load the new changes.
+
+npm install nodemon --save-dev
+
+![installing concurrently and nodemon](./images/concurrently%20and%20nodemon.png)
+
+In Todo folder open the package.json file. Change the highlighted part of the below screenshot and replace with the code below.
+
+![replacing code](./images/package-jason-file.png)
+
+Configure Proxy in package.json
+Change directory to ‘client’
+
+cd client
+
+![cd Client](./images/changing-directory-to-client.png)
+
+Open the package.json file
+
+vi package.json
+
+Add the key value pair in the package.json file "proxy": "http://localhost:5000"
+
+![Adding value key pair in the package.json file](./images/proxy-package-json.png)
+
+The whole purpose of adding the proxy configuration in number 3 above is to make it possible to access the application directly from the browser by simply calling the server url like http://localhost:5000 rather than always including the entire path like http://localhost:5000/api/todos
+
+Now, ensure you are inside the Todo directory, and simply do:
+
+npm run dev
+
+![npm run dev](./images/npm-run-dev.png)
+
+Your app should open and start running on localhost:3000
+
+In order to be able to access the application from the Internet you have to open TCP port 3000 on EC2 by adding a new Security Group rule.
+
+![checking that app is running on localhost](./images/app-running-on-locahost.png)
+
+Creating your React Components
+One of the advantages of react is that it makes use of components, which are reusable and also makes code modular. For our Todo app, there will be two stateful components and one stateless component.
+From your Todo directory run
+
+cd client
+move to the src directory
+
+cd src
+Inside your src folder create another folder called components
+
+mkdir components
+Move into the components directory with
+
+cd components
+
+Inside ‘components’ directory create three files Input.js, ListTodo.js and Todo.js.
+
+touch Input.js ListTodo.js Todo.js
+
+Open Input.js file
+
+vi Input.js
+
+![creating the reacts components](./images/creating-react-components.png)
+
+![pasting the following into the Input.js file](./images/Input-jsfile.png)
+
+To make use of Axios, which is a Promise based HTTP client for the browser and node.js, you need to cd into your client from your terminal and run yarn add axios or npm install axios.
+
+Move to the src folder
+
+cd ..
+Move to clients folder
+
+cd ..
+Install Axios
+
+npm install axios
+
+Go to ‘components’ directory
+
+cd src/components
+After that open your ListTodo.js
+
+vi ListTodo.js
+
+![installing axios and cd into components](./images/installing-axios-and-cd-into-components.png)
+
+in the ListTodo.js copy and paste the following code
+
+![alt text](./images/image.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+![alt text](./images/image.jpg)
 
 
 
