@@ -396,7 +396,52 @@ vi ListTodo.js
 
 in the ListTodo.js copy and paste the following code
 
-![alt text](./images/image.jpg)
+![ListTodo.js](./images/List-Todo.png)
+
+Then in your Todo.js file again paste following code
+
+![Todo.js file](./images/Todo-file.png)
+
+Make sure that you are in the src folder and run
+
+vi App.js
+
+Copy and paste the code below into it
+
+![App.js file](./images/App-js.png)
+
+In the src directory open the App.css
+
+vi App.css
+
+Then paste the following code into App.css
+
+![App.css file](./images/App-css.png)
+
+Exit
+
+In the src directory open the index.css
+
+vim index.css
+
+Copy and paste the code below
+
+![Index.css](./images/Index-css.png)
+
+Go to the Todo directory
+
+cd ../..
+When you are in the Todo directory run:
+
+npm run dev
+
+![npm-rundev](./images/npm-rundev.png)
+
+![Created a simple To-Do and deployed it to MERN stack](./images/npm-run-dev-Simple-Todo.png)
+
+![Creating a task](./images/Deployed-it-to-MERN-stack.png)
+
+![viewing a task](./images/simple-Todo.png)
 
 
 
@@ -413,7 +458,10 @@ in the ListTodo.js copy and paste the following code
 
 
 
-![alt text](./images/image.jpg)
+
+
+
+
 
 
 
